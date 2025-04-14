@@ -24,6 +24,7 @@ Then restart PowerShell.
 
 The tool ensures only files in the current working directory are completed by automatically prepending `.\`. Currently, it recognizes and skips adding `.\` in these cases:
 
-Paths starting with `./`, `../`, `.\`, `..\`, `/`, `\`, `//`, `\\`, or a drive letter (e.g., `C:`).
-Paths enclosed in quotes.
+1. Paths starting with `./`, `../`, `.\`, `..\`, `/`, `\`, `//`, `\\`, or a drive letter (e.g., `C:`).
+1. Paths enclosed in quotes.
+
 `install.ps1` writes `profile.ps1` to `$PROFILE`. If `$PROFILE` doesn't exist, the script creates it first. `$PROFILE` is PowerShell's configuration file and executes automatically on startup.
