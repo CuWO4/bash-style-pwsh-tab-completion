@@ -1,4 +1,6 @@
 
+# pwsh tab completion configuration begin
+
 Set-PSReadLineOption -PredictionSource None
 
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock {
@@ -41,3 +43,5 @@ Set-PSReadLineKeyHandler -Key Tab -ScriptBlock {
         [Microsoft.PowerShell.PSConsoleReadLine]::PossibleCompletions()
     }
 }
+
+# pwsh tab completion configuration end
