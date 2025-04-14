@@ -18,7 +18,17 @@
 ./install.ps1 # Run as administrator if the script fails
 ```
 
-Then restart PowerShell.
+Restart to take effect.
+
+Set environment variable `PWSH_TAB_COMPLETION` as `CIRCULATION` or `BASH_STYLE` to switch to corresponding completion mode. Restart to take effect.
+
+execute
+
+```pwsh
+./uninstall.ps1
+```
+
+to uninstall. Restart to take effect.
 
 ## Technical Details
 
