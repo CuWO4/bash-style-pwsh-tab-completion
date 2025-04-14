@@ -23,20 +23,22 @@ else {
   Write-Host "PSReadLine satisfied, installation skip" -ForegroundColor Yellow
 }
 
-$isProfileExists = Test-Path $PROFILE
-
-if (-not $isProfileExists) {
+if (-not (Test-Path $PROFILE)) {
   New-Item -ItemType File -Path $PROFILE -Force | Out-Null
   Write-Host "new profile created" -ForegroundColor Green
 }
 
 $currentContent = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue
-
-if ((-not $isProfileExists) -or ($currentContent -notmatch [regex]::Escape($profileContent))) {
+$beginMarker = "# pwsh tab completion configuration begin"
+if ($currentContent -eq $null -or $currentContent -notmatch [regex]::Escape($beginMarker)) {
   $profileContent | Out-File $PROFILE -Append -Encoding UTF8
   Write-Host "configuration has been written to $PROFILE" -ForegroundColor Green
-  Write-Host "restart Powershell to take effect"
 }
 else {
   Write-Host "configuration already exists, skip" -ForegroundColor Yellow
 }
+
+[Environment]::SetEnvironmentVariable("PWSH_TAB_COMPLETION", "BASH_STYLE", "USER")
+Write-Host "environment variable set" -ForegroundColor Green
+
+Write-Host "restart Powershell to take effect"
